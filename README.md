@@ -1,4 +1,4 @@
-# Frontend Search - Website
+# Frontend Search Application
 
 Hey 👋
 
