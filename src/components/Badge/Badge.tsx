@@ -1,15 +1,9 @@
+import { UserRoleType } from "../../types";
 import s from "./Badge.module.css";
 
 interface Props {
   label: string;
-  variant:
-    | "admin"
-    | "editor"
-    | "viewer"
-    | "guest"
-    | "owner"
-    | "inactive"
-    | string;
+  variant: UserRoleType;
   className?: string;
 }
 

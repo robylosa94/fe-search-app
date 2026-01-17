@@ -1,5 +1,13 @@
+export type UserRoleType =
+  | "admin"
+  | "editor"
+  | "viewer"
+  | "guest"
+  | "owner"
+  | "inactive";
+
 export interface UserType {
-  role: "admin" | "editor" | "viewer" | "guest" | "owner" | "inactive" | string;
+  role: UserRoleType;
   name: string;
   job_title: string;
   team: string;

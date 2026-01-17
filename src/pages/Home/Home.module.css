@@ -27,3 +27,11 @@
   flex-direction: column;
   gap: 2rem;
 }
+
+.noresults {
+  text-align: center;
+}
+
+.noresults__title {
+  font-size: 1.25rem;
+}

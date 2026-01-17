@@ -1,20 +1,40 @@
-import Button from "../Button";
+import { Button } from "../../components";
 import s from "./SearchInput.module.css";
 
 interface Props {
+  value: string;
+  onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
+  onSearch: () => void;
   className?: string;
 }
 
-export default function SearchInput({ className }: Props) {
+export default function SearchInput({
+  value,
+  onChange,
+  onSearch,
+  className,
+}: Props) {
   const classNames = [s.searchInput, className].filter(Boolean).join(" ");
 
   return (
     <div className={classNames}>
       <span className={s.searchInput__label}>WHAT ARE YOU LOOKING FOR?</span>
-      <form className={s.searchInput__form}>
-        <input type="search" name="search" placeholder="Search by name..." />
-        <Button type="submit" label="Search" size="lg" />
-      </form>
+      <div className={s.searchInput__form}>
+        <input
+          type="search"
+          name="search"
+          placeholder="Search by name..."
+          value={value}
+          aria-label="Search user by name"
+          onChange={onChange}
+          onKeyDown={(e) => {
+            if (e.key === "Enter") {
+              onSearch();
+            }
+          }}
+        />
+        <Button label="Search" size="lg" onClick={onSearch} />
+      </div>
     </div>
   );
 }
