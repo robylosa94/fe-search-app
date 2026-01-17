@@ -1,11 +1,8 @@
-# Frontend Interview - Website
+# Frontend Search - Website
 
 Hey 👋
 
-This is the base repository for the home test. The repository is created with `vite` and is empty, but contains some packages already installed, in particular:
-
-- `react`
-- `vitest`
+The repository is created with `vite`.
 
 ## Install and run
 
@@ -17,7 +14,3 @@ pnpm install
 # And run the project
 pnpm dev
 ```
-
-## Figma file
-
-The figma file of the home test is available [here](https://www.figma.com/design/ESP3mNtKRj1aI458c08QBb/%F0%9F%92%BB-Website-Home-Test?node-id=0-1&t=tmrCaYq4wADJCHvD-1).
