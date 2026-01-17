@@ -1,0 +1,33 @@
+.badge {
+  display: inline-block;
+  padding: 8px 16px;
+  font-size: 0.75rem;
+  font-weight: 500;
+  color: #fff;
+  text-transform: uppercase;
+  line-height: 0.675;
+  letter-spacing: 0.1em;
+  border-radius: 0.5rem;
+
+  &.badge--admin {
+    background-color: var(--color-admin);
+  }
+
+  &.badge--editor {
+    background-color: var(--color-editor);
+  }
+
+  &.badge--viewer {
+    background-color: var(--color-viewer);
+  }
+
+  &.badge--guest {
+    background-color: var(--color-guest);
+  }
+
+  &.badge--owner,
+  &.badge--inactive {
+    background-color: var(--color-deactivated);
+    color: #292929;
+  }
+}
