@@ -1,4 +1,3 @@
-import { forwardRef } from "react";
 import s from "./Badge.module.css";
 
 interface Props {
@@ -14,18 +13,10 @@ interface Props {
   className?: string;
 }
 
-const Badge = forwardRef<HTMLDivElement, Props>(
-  ({ label, variant, className }, ref) => {
-    const classNames = [s.badge, s[`badge--${variant}`], className]
-      .filter(Boolean)
-      .join(" ");
+export default function Badge({ label, variant, className }: Props) {
+  const classNames = [s.badge, s[`badge--${variant}`], className]
+    .filter(Boolean)
+    .join(" ");
 
-    return (
-      <div ref={ref as React.Ref<HTMLDivElement>} className={classNames}>
-        {label}
-      </div>
-    );
-  },
-);
-
-export default Badge;
+  return <div className={classNames}>{label}</div>;
+}

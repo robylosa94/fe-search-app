@@ -4,5 +4,5 @@ export interface UserType {
   job_title: string;
   team: string;
   email: string;
-  className?: string;
+  details: string;
 }

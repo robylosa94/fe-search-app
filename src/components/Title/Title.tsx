@@ -1,4 +1,3 @@
-import { forwardRef } from "react";
 import s from "./Title.module.css";
 
 interface Props {
@@ -7,17 +6,9 @@ interface Props {
   className?: string;
 }
 
-const Title = forwardRef<HTMLHeadingElement, Props>(
-  ({ text, as = "h2", className }, ref) => {
-    const classNames = [s.title, className].filter(Boolean).join(" ");
-    const Tag = as;
+export default function Title({ text, as = "h2", className }: Props) {
+  const classNames = [s.title, className].filter(Boolean).join(" ");
+  const Tag = as;
 
-    return (
-      <Tag ref={ref as React.Ref<HTMLHeadingElement>} className={classNames}>
-        {text}
-      </Tag>
-    );
-  },
-);
-
-export default Title;
+  return <Tag className={classNames}>{text}</Tag>;
+}

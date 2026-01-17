@@ -1,20 +1,26 @@
 .card {
+  background-color: #fff;
   border: 1px solid #d3d3dc;
   border-radius: 1.25rem;
-  padding: 16px;
+  padding: 1rem;
   display: flex;
   flex-direction: column;
-  gap: 16px;
+  gap: 1rem;
+}
 
-  .card__header {
-    .card__header_badge {
-      margin-bottom: 8px;
+.card__header {
+  .card__badge {
+    margin-bottom: 0.5rem;
+
+    &.card__badge--owner,
+    &.card__badge--inactive {
+      border-color: #d3d3dc;
     }
   }
+}
 
-  .card__body {
-    display: flex;
-    flex-direction: column;
-    gap: 12px;
-  }
+.card__body {
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
 }

@@ -1,5 +1,5 @@
 .text {
-  color: #63666a;
+  color: var(--color-gray);
   font-size: 0.875rem;
   line-height: 1.7;
 

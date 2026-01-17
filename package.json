@@ -12,6 +12,7 @@
     "tsc": "tsc -b"
   },
   "dependencies": {
+    "@types/react-router-dom": "^5.3.3",
     "react": "^19.2.1",
     "react-dom": "^19.2.1",
     "react-router-dom": "^7.12.0"

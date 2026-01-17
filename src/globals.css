@@ -5,6 +5,8 @@
   --color-viewer: #5993b9;
   --color-guest: #9f009f;
   --color-deactivated: #fff;
+  --color-gray: #63666a;
+  --color-gray-dark: #1b2134;
 }
 
 *,
@@ -15,11 +17,17 @@
   margin: 0;
 }
 
-html {
+body {
   font-family: "Poppins", sans-serif;
+  background-color: #f5f5f5;
+}
+
+input,
+button {
+  font-family: inherit;
 }
 
 button {
   cursor: pointer;
-  font-family: inherit;
+  border: none;
 }
