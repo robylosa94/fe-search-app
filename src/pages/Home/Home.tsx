@@ -1,33 +1,70 @@
-import { useState } from "react";
+import { useCallback, useEffect, useMemo, useState } from "react";
 import { Container, Filters, Grid, SearchInput, Text } from "../../components";
-import { users } from "../../data/users";
 import { UserRoleType, UserType } from "../../types";
 import s from "./Home.module.css";
 
 export default function Home() {
   const [searchQuery, setSearchQuery] = useState("");
+  const [activeFilter, setActiveFilter] = useState<UserRoleType | null>(null);
+  const [loading, setLoading] = useState(false);
   const [results, setResults] = useState<UserType[]>([]);
   const [hasSearched, setHasSearched] = useState(false);
 
-  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setSearchQuery(e.target.value);
-  };
+  const fetchUsers = useCallback(
+    async (query: string, filter: UserRoleType | null): Promise<UserType[]> => {
+      const url = new URL(
+        "https://696d38b0f4a79b315180c9fe.mockapi.io/api/users",
+      );
+      if (query.trim()) url.searchParams.append("name", query);
+      if (filter) url.searchParams.append("role", filter);
+      const response = await fetch(url);
+      if (!response.ok) throw new Error("Failed to fetch users");
+      return response.json();
+    },
+    [],
+  );
 
-  const handleSearch = () => {
+  const getUsers = useCallback(
+    async (currentQuery: string, currentFilter: UserRoleType | null) => {
+      setLoading(true);
+      try {
+        const data = await fetchUsers(currentQuery, currentFilter);
+        setResults(data);
+      } catch (error) {
+        console.error("Error fetching users:", error);
+        setResults([]);
+      } finally {
+        setLoading(false);
+      }
+    },
+    [fetchUsers],
+  );
+
+  useEffect(() => {
+    if (hasSearched) {
+      getUsers(searchQuery, activeFilter);
+    }
+  }, [activeFilter, hasSearched, getUsers]);
+
+  const handleInputChange = useCallback(
+    (e: React.ChangeEvent<HTMLInputElement>) => {
+      setSearchQuery(e.target.value);
+    },
+    [],
+  );
+  const handleSearch = useCallback(async () => {
     setHasSearched(true);
+    setActiveFilter(null);
+    await getUsers(searchQuery, activeFilter);
+  }, [getUsers, searchQuery, activeFilter]);
 
-    const filteredUsers = searchQuery
-      ? users.filter(({ name }) =>
-          name.toLowerCase().includes(searchQuery.toLowerCase().trim()),
-        )
-      : [];
+  const handleFilterChange = useCallback(async (role: UserRoleType) => {
+    setActiveFilter(role);
+  }, []);
 
-    setResults(filteredUsers);
-  };
-
-  const filters = [
-    ...new Set(results.map(({ role }) => role)),
-  ] as UserRoleType[];
+  const handleFilterReset = useCallback(() => {
+    setActiveFilter(null);
+  }, []);
 
   return (
     <main className={s.dashboard}>
@@ -44,16 +81,25 @@ export default function Home() {
         </header>
         {hasSearched && (
           <section className={s.body}>
-            {results.length > 0 ? (
-              <>
-                {filters.length > 1 && <Filters filters={filters} />}
-                <Grid users={results} />
-              </>
+            <Filters
+              activeFilter={activeFilter}
+              loading={loading}
+              onFilterChange={handleFilterChange}
+              onFilterReset={handleFilterReset}
+            />
+            {loading ? (
+              <div className={s.loading}>
+                <Text as="p" size="sm">
+                  Loading users...
+                </Text>
+              </div>
+            ) : results.length > 0 ? (
+              <Grid users={results} />
             ) : (
               <div className={s.noresults}>
                 <span className={s.noresults__title}>No user found</span>
                 <Text as="p" size="sm">
-                  No users match your search criteria. Try a different keyword.
+                  No users match your search criteria or filter.
                 </Text>
               </div>
             )}

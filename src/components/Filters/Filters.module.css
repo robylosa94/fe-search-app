@@ -4,6 +4,15 @@
   gap: 0.5rem;
   border-bottom: 1px solid var(--color-gray);
   padding-bottom: 1rem;
+
+  &:has(.filters__button[aria-pressed="true"]) {
+    .filters__button:not([aria-pressed="true"]) {
+      > div {
+        background-color: #ddd;
+        color: #fff;
+      }
+    }
+  }
 }
 
 .filters__label {
@@ -12,4 +21,16 @@
   color: var(--color-gray);
   line-height: 1.7;
   letter-spacing: 0.1em;
+}
+
+.filters__button {
+  &:disabled {
+    cursor: not-allowed;
+  }
+}
+
+.filters__reset {
+  text-decoration: underline;
+  font-size: 0.625rem;
+  color: var(--color-gray);
 }

@@ -3,20 +3,44 @@ import Badge from "../Badge";
 import s from "./Filters.module.css";
 
 interface Props {
-  filters: UserRoleType[];
-  className?: string;
+  activeFilter: UserRoleType | null;
+  loading: boolean;
+  onFilterChange: (role: UserRoleType) => void;
+  onFilterReset: () => void;
 }
 
-export default function Filters({ filters, className }: Props) {
-  const classNames = [s.filters, className].filter(Boolean).join(" ");
+export default function Filters({
+  activeFilter,
+  loading,
+  onFilterChange,
+  onFilterReset,
+}: Props) {
+  const filters: UserRoleType[] = [
+    "admin",
+    "editor",
+    "viewer",
+    "guest",
+    "owner",
+    "inactive",
+  ];
 
   return (
-    <div className={classNames}>
+    <div className={s.filters}>
       <span className={s.filters__label}>FILTER BY:</span>
       {filters.map((filter, idx: number) => (
-        <button key={idx}>
-          <Badge label={filter} variant={filter} />
-        </button>
+        <>
+          <button
+            key={idx}
+            onClick={() =>
+              activeFilter === filter ? onFilterReset() : onFilterChange(filter)
+            }
+            className={s.filters__button}
+            aria-pressed={activeFilter === filter}
+            disabled={loading}
+          >
+            <Badge label={filter} variant={filter} />
+          </button>
+        </>
       ))}
     </div>
   );
