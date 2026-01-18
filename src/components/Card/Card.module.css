@@ -8,7 +8,8 @@
   gap: 1rem;
 }
 
-.card__header {
+.card__header,
+.modal__header {
   .card__badge {
     margin-bottom: 0.5rem;
 
@@ -19,8 +20,19 @@
   }
 }
 
-.card__body {
+.modal__header {
+  margin-bottom: 1rem;
+}
+
+.card__body,
+.modal__body {
   display: flex;
   flex-direction: column;
   gap: 0.75rem;
+}
+
+.modal__footer {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 1.25rem;
 }

@@ -14,7 +14,14 @@
   text-align: center;
 
   &.button--lg {
-    font-size: 1rem;
-    height: 4.875rem;
+    @media only screen and (min-width: 768px) {
+      font-size: 1rem;
+      height: 4.875rem;
+    }
+  }
+
+  &:disabled {
+    cursor: not-allowed;
+    background-color: #ddd;
   }
 }

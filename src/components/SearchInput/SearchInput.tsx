@@ -33,7 +33,7 @@ export default function SearchInput({
             }
           }}
         />
-        <Button label="Search" size="lg" onClick={onSearch} />
+        <Button label="Search" size="lg" onClick={onSearch} disabled={!value} />
       </div>
     </div>
   );
