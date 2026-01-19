@@ -18,7 +18,7 @@ export default function SearchInput({
 
   return (
     <div className={classNames}>
-      <span className={s.searchInput__label}>WHAT ARE YOU LOOKING FOR?</span>
+      <span className={s.searchInput__span}>WHAT ARE YOU LOOKING FOR?</span>
       <div className={s.searchInput__form}>
         <input
           type="search"
