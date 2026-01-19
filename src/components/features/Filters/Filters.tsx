@@ -1,5 +1,5 @@
-import { UserRoleType } from "../../types";
-import Badge from "../Badge";
+import { UserRoleType } from "@/types";
+import { Badge } from "@/components/ui";
 import s from "./Filters.module.css";
 
 interface Props {

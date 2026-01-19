@@ -1,5 +1,6 @@
-import { Modal, Button, UserInfo } from "../../components";
-import { UserType } from "../../types";
+import { Modal, Button } from "@/components/ui";
+import { UserInfo } from "@/components/features";
+import { UserType } from "@/types";
 import s from "./ModalDetails.module.css";
 
 interface Props extends UserType {

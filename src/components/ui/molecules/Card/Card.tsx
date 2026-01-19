@@ -1,7 +1,8 @@
 import { useState } from "react";
-import { Button, ModalDetails, UserInfo } from "../../components";
-import { UserType } from "../../types";
 import { createPortal } from "react-dom";
+import { Button } from "@/components/ui";
+import { ModalDetails, UserInfo } from "@/components/features";
+import { UserType } from "@/types";
 import s from "./Card.module.css";
 
 interface Props extends UserType {

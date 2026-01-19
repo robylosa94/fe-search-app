@@ -1,5 +1,5 @@
-import { Card } from "../../components";
-import { UserType } from "../../types";
+import { Card } from "@/components/ui";
+import { UserType } from "@/types";
 import s from "./Grid.module.css";
 
 interface Props {

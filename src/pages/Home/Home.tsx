@@ -1,6 +1,7 @@
-import { useCallback, useEffect, useMemo, useState } from "react";
-import { Container, Filters, Grid, SearchInput, Text } from "../../components";
-import { UserRoleType, UserType } from "../../types";
+import { useCallback, useEffect, useState } from "react";
+import { Container, Grid, Text } from "@/components/ui";
+import { Filters, SearchInput } from "@/components/features";
+import { UserRoleType, UserType } from "@/types";
 import s from "./Home.module.css";
 
 export default function Home() {

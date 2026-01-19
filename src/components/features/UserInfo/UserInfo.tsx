@@ -1,5 +1,5 @@
-import { Badge, Text, Title } from "..";
-import { UserType } from "../../types";
+import { Badge, Text, Title } from "@/components/ui";
+import { UserType } from "@/types";
 import s from "./UserInfo.module.css";
 
 interface Props extends UserType {
