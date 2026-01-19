@@ -17,11 +17,15 @@
 }
 
 .filters__label {
-  font-size: 0.8125rem;
+  font-size: 0.6875rem;
   font-weight: 500;
   color: var(--color-gray);
   line-height: 1.7;
   letter-spacing: 0.1em;
+
+  @media only screen and (min-width: 768px) {
+    font-size: 0.8125rem;
+  }
 }
 
 .filters__button {
