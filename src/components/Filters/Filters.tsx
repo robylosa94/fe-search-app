@@ -28,19 +28,17 @@ export default function Filters({
     <div className={s.filters}>
       <span className={s.filters__label}>FILTER BY:</span>
       {filters.map((filter, idx: number) => (
-        <>
-          <button
-            key={idx}
-            onClick={() =>
-              activeFilter === filter ? onFilterReset() : onFilterChange(filter)
-            }
-            className={s.filters__button}
-            aria-pressed={activeFilter === filter}
-            disabled={loading}
-          >
-            <Badge label={filter} variant={filter} />
-          </button>
-        </>
+        <button
+          key={idx}
+          onClick={() =>
+            activeFilter === filter ? onFilterReset() : onFilterChange(filter)
+          }
+          className={s.filters__button}
+          aria-pressed={activeFilter === filter}
+          disabled={loading}
+        >
+          <Badge label={filter} variant={filter} />
+        </button>
       ))}
     </div>
   );

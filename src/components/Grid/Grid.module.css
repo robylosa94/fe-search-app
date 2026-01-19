@@ -1,5 +1,18 @@
 .grid {
+  --grid-items: 1;
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(13.75rem, 1fr));
+  grid-template-columns: repeat(var(--grid-items), 1fr);
   gap: 0.75rem;
+
+  @media only screen and (min-width: 580px) {
+    --grid-items: 2;
+  }
+
+  @media only screen and (min-width: 768px) {
+    --grid-items: 3;
+  }
+
+  @media only screen and (min-width: 1280px) {
+    --grid-items: 4;
+  }
 }

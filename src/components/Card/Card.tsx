@@ -4,9 +4,14 @@ import { UserType } from "../../types";
 import { createPortal } from "react-dom";
 import s from "./Card.module.css";
 
-export default function Card({ ...props }: UserType) {
+interface Props extends UserType {
+  className?: string;
+}
+
+export default function Card({ className, ...props }: Props) {
   const { details, ...rest } = props;
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const classNames = [s.card, className].filter(Boolean).join(" ");
 
   const toggleModal = () => {
     setIsModalOpen(!isModalOpen);
@@ -14,9 +19,13 @@ export default function Card({ ...props }: UserType) {
 
   return (
     <>
-      <article className={s.card}>
+      <article className={classNames}>
         <UserInfo {...rest} size="sm" />
-        <Button label="View details" onClick={toggleModal} />
+        <Button
+          label="View details"
+          onClick={toggleModal}
+          className={s.card__button}
+        />
       </article>
       {createPortal(
         isModalOpen && (

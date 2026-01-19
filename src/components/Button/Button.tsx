@@ -17,10 +17,11 @@ export default function Button({ ...props }: Props) {
     size = "md",
     disabled = false,
     loading = false,
+    className,
     ...rest
   } = props;
 
-  const classNames = [s.button, s[`button--${size}`], "className" in props]
+  const classNames = [s.button, s[`button--${size}`], className]
     .filter(Boolean)
     .join(" ");
 

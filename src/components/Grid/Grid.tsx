@@ -13,7 +13,7 @@ export default function Grid({ users, className }: Props) {
   return (
     <div className={classNames}>
       {users.map((user, idx: number) => (
-        <Card key={idx} {...user} />
+        <Card key={idx} {...user} className={s.grid__card} />
       ))}
     </div>
   );
