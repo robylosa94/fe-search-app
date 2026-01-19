@@ -12,5 +12,5 @@ export interface UserType {
   job_title: string;
   team: string;
   email: string;
-  details: string;
+  details?: string;
 }

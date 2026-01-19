@@ -7,32 +7,3 @@
   flex-direction: column;
   gap: 1rem;
 }
-
-.card__header,
-.modal__header {
-  .card__badge {
-    margin-bottom: 0.5rem;
-
-    &.card__badge--owner,
-    &.card__badge--inactive {
-      border-color: #d3d3dc;
-    }
-  }
-}
-
-.modal__header {
-  margin-bottom: 1rem;
-}
-
-.card__body,
-.modal__body {
-  display: flex;
-  flex-direction: column;
-  gap: 0.75rem;
-}
-
-.modal__footer {
-  display: flex;
-  justify-content: flex-end;
-  margin-top: 1.25rem;
-}
