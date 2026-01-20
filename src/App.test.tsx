@@ -20,6 +20,6 @@ describe("App", () => {
         <App />
       </MemoryRouter>,
     );
-    expect(screen.getByText(/Page not found/i)).toBeInTheDocument();
+    expect(screen.getByText(/Error 404/i)).toBeInTheDocument();
   });
 });
