@@ -1,4 +1,4 @@
-import { UserRoleType } from "../../types";
+import { UserRoleType } from "@/types";
 import s from "./Badge.module.css";
 
 interface Props {
