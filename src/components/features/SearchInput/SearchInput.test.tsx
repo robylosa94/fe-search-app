@@ -1,6 +1,6 @@
-import { describe, expect, it, vi } from "vitest";
+import { describe, expect, vi } from "vitest";
 import { render, screen, waitFor } from "@testing-library/react";
-import user from "@testing-library/user-event";
+import user, { userEvent } from "@testing-library/user-event";
 import SearchInput from "./SearchInput";
 import { useState } from "react";
 import { Grid } from "@/components/ui";
@@ -31,25 +31,38 @@ describe("SearchInput", () => {
   });
 
   test("digita Arianna, clicca search e verifica che ci sia la card con nome Arianna", async () => {
+    const mockUser = {
+      role: "editor",
+      name: "Arianna Russo",
+      job_title: "Product Designer",
+      team: "Design",
+      email: "arianna.russo@company.com",
+    };
+    const mockApiResponse = [mockUser];
+
+    vi.stubGlobal(
+      "fetch",
+      vi.fn().mockResolvedValue({
+        ok: true,
+        json: async () => mockApiResponse,
+      }),
+    );
+
     const onSearchMock = vi.fn();
 
     const TestWrapper = () => {
       const [value, setValue] = useState("");
       const [results, setResults] = useState<UserType[]>([]);
 
-      const handleSearch = () => {
+      const handleSearch = async () => {
         const query = value;
         onSearchMock(query);
-        if (query === "Arianna") {
-          setResults([
-            {
-              role: "editor",
-              name: "Arianna Russo",
-              job_title: "Product Designer",
-              team: "Design",
-              email: "arianna.russo@company.com",
-            },
-          ]);
+        const response = await fetch(
+          `https://696d38b0f4a79b315180c9fe.mockapi.io/api/users?name=${query}`,
+        );
+        if (response.ok) {
+          const data = await response.json();
+          setResults(data);
         }
       };
 
@@ -70,17 +83,20 @@ describe("SearchInput", () => {
     render(<TestWrapper />);
 
     const input = screen.getByPlaceholderText(/search/i);
-    await user.type(input, "Arianna");
+    await userEvent.type(input, "Arianna");
     expect(input).toHaveValue("Arianna");
 
     const button = screen.getByRole("button", { name: /search/i });
-    await user.click(button);
+    await userEvent.click(button);
 
     await waitFor(() => {
       expect(onSearchMock).toHaveBeenCalledWith("Arianna");
+      expect(fetch).toHaveBeenCalledWith(
+        "https://696d38b0f4a79b315180c9fe.mockapi.io/api/users?name=Arianna",
+      );
     });
 
-    const results = screen.getByTestId("results");
-    expect(results).toHaveTextContent("Arianna");
+    const resultsContainer = screen.getByTestId("results");
+    expect(resultsContainer).toHaveTextContent("Arianna Russo");
   });
 });
